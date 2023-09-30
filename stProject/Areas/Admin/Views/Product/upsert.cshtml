@@ -1,0 +1,114 @@
+﻿@model ProductVM
+
+
+<div class="card shadow border-0 mb-5">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <h2 class="text-white py-2">@(Model.Product.Id == 0 ? "Create Product":"Update Product") </h2>
+        </div>
+    </div>
+
+    
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <input asp-for="Product.Id" hidden />
+            <input asp-for="Product.imageUrl" hidden />
+
+            <div class="row">
+                <div class="col-10">
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Book Title</label>
+                        <input asp-for="Product.Title" class="form-control" />
+                        <span asp-validation-for="Product.Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Author Name</label>
+                        <input asp-for="Product.Author" class="form-control" />
+                        <span asp-validation-for="Product.Author" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Book Description</label>
+                        <textarea asp-for="Product.Description" class="form-control"></textarea>
+                        <span asp-validation-for="Product.Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">ISBN</label>
+                        <input asp-for="Product.ISBN" class="form-control" />
+                        <span asp-validation-for="Product.ISBN" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Book Price</label>
+                        <input asp-for="Product.Price" class="form-control" />
+                        <span asp-validation-for="Product.Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Book Price50</label>
+                        <input asp-for="Product.Price50" class="form-control" />
+                        <span asp-validation-for="Product.Price50" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Book Price100</label>
+                        <input asp-for="Product.Price100" class="form-control" />
+                        <span asp-validation-for="Product.Price100" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Book List Price</label>
+                        <input asp-for="Product.ListPrice" class="form-control" />
+                        <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Category List</label>
+                        <select asp-for="Product.CategoryId" asp-items="Model.CategoryList" class="select-control">
+                            <option disabled selected>-- Select Category --</option>
+                        </select>
+                        <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Image Url</label>
+                        <input type="file" name="file" class="form-control" />
+                        <span asp-validation-for="Product.imageUrl" class="text-danger"></span>
+                    </div>
+
+                    <div asp-validation-summary="ModelOnly"></div>
+
+
+                    <div class="row">
+                        <div class="col-6 col-md-3"><button type="submit" class="btn btn-primary form-control">@(Model.Product.Id != 0 ? "Update" : "Create")</button></div>
+                        <div class="col-6 col-md-3"><a asp-controller="Product" asp-action="index" class="btn btn-outline-secondary border form-control">back to list</a></div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <img src="@Model.Product.imageUrl" width="100%"style="border-radius: 5px; border: 1px solid white; " />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: ' typography',
+            toolbar: 'undo redo',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

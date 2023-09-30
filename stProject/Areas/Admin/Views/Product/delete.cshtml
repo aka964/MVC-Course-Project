@@ -1,0 +1,91 @@
+﻿@model Product
+
+
+<div class="card shadow border-0 my-5">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <h2 class="text-white">Delete Product</h2>
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+
+            <input asp-for="Id" hidden />
+            <input asp-for="imageUrl" hidden />
+            <div class="row">
+                <div class="col-10">
+                
+                <div class="mb-3 row p-3">
+                    <label class=" col pb-1">Book Title</label>
+                    <input asp-for="Title" disabled class="form-control" />
+                </div>
+
+                <div class="mb-3 row p-3">
+                    <label class=" col pb-1">Author Name</label>
+                    <input asp-for="Author" disabled class="form-control" />
+                </div>
+                <div class="mb-3 row p-3">
+                    <label class=" col pb-1">Book Description</label>
+                    <textarea asp-for="Description" disabled class="form-control"></textarea>
+                </div>
+
+                <div class="mb-3 row p-3">
+                    <label class=" col pb-1">ISBN</label>
+                    <input asp-for="ISBN" disabled class="form-control" />
+                </div>
+
+                <div class="mb-3 row p-3">
+                    <label class=" col pb-1">Book Price</label>
+                    <input asp-for="Price" disabled class="form-control" />
+                </div>
+
+                <div class="mb-3 row p-3">
+                    <label class=" col pb-1">Book Price50</label>
+                    <input asp-for="Price50" disabled class="form-control" />
+                </div>
+
+                <div class="mb-3 row p-3">
+                    <label class=" col pb-1">Book Price100</label>
+                    <input asp-for="Price100" disabled class="form-control" />
+                </div>
+
+                <div class="mb-3 row p-3">
+                    <label class=" col pb-1">Book List Price</label>
+                    <input asp-for="ListPrice" disabled class="form-control" />
+                </div>
+
+                <div asp-validation-summary="ModelOnly"></div>
+
+
+                <div class="row">
+                    <div class="col-6 col-md-3"><button type="submit" class="btn btn-danger form-control">Delete</button></div>
+                    <div class="col-6 col-md-3"><a asp-controller="Product" asp-action="index" class="btn btn-outline-secondary border form-control">back to list</a></div>
+                </div>
+                </div>
+                <div class="col-2">
+                    <img src="imageUrl" width="100%" style="border-radius: 5px; border: 1px solid white; " />
+                </div>
+            </div>
+            
+
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: ' typography',
+            toolbar: 'undo redo',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+        });
+    </script>
+}
