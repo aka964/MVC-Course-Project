@@ -10,7 +10,11 @@ namespace stDataAccess.Repository.IRepository
     {
         ICategoryRepository Category { get; }
         IProductRepository Product { get; }
-
+        ICompanyRepository Company { get; }
+        IShopingCartRepository ShopingCart { get; }
+        IApplicationUserRepository applicationUser { get; }
+        IOrderHeaderRepository OrderHeader { get; }
+        IOrderDetailRepository OrderDetail { get; }
         void Save();
     }
 }

@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using stDataAccess.Data;
 using stDataAccess.Repository.IRepository;
 using stModels.Models;
+using stUtility;
 
 namespace stZ.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.role_admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork uofDb;

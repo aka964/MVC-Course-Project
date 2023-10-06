@@ -1,0 +1,84 @@
+﻿@model Company
+
+
+<div class="card shadow border-0 mb-5">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <h2 class="text-white py-2">@(Model.Id == 0 ? "Create Company" : "Update Company") </h2>
+        </div>
+    </div>
+
+    
+    <div class="card-body">
+        <form method="post">
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Name</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Street Address</label>
+                        <input asp-for="StreetAddress" class="form-control" />
+                        <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">City</label>
+                        <input asp-for="City" class="form-control"/>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">State</label>
+                        <input asp-for="State" class="form-control" />
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Postal Code</label>
+                        <input asp-for="PostalCode" class="form-control" />
+                        <span asp-validation-for="PostalCode" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-3">
+                        <label class=" col pb-1">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+
+
+
+                    <div asp-validation-summary="ModelOnly"></div>
+
+
+                    <div class="row">
+                        <div class="col-6 col-md-3"><button type="submit" class="btn btn-primary form-control">@(Model.Id != 0 ? "Update" : "Create")</button></div>
+                        <div class="col-6 col-md-3"><a asp-controller="Company" asp-action="index" class="btn btn-outline-secondary border form-control">back to list</a></div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: ' typography',
+            toolbar: 'undo redo',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

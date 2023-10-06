@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Nest;
 using stModels.Models;
 
 namespace stDataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -12,9 +15,15 @@ namespace stDataAccess.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<ShopingCart> shpoingCarts { get; set; }
+        public DbSet<OrderHeader> OrderHeaders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             //CategorySeed
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Action", DisplayOrder = 0 },
@@ -108,6 +117,49 @@ namespace stDataAccess.Data
                     Price100 = 20,
                     CategoryId = 3,
                     imageUrl = ""
+                });
+
+            //CompanySeed
+            modelBuilder.Entity<Company>().HasData(
+                new Company
+                {
+                    Id = 1,
+                    Name = "ABC Inc.",
+                    StreetAddress = "123 Main St",
+                    City = "New York",
+                    State = "NY",
+                    PostalCode = "10001",
+                    PhoneNumber = "555-123-4567"
+                },
+                new Company
+                {
+                    Id = 2,
+                    Name = "XYZ Corp.",
+                    StreetAddress = "456 Elm St",
+                    City = "Los Angeles",
+                    State = "CA",
+                    PostalCode = "90001",
+                    PhoneNumber = "555-987-6543"
+                },
+                new Company
+                {
+                    Id = 3,
+                    Name = "LMN Ltd.",
+                    StreetAddress = "789 Oak St",
+                    City = "Chicago",
+                    State = "IL",
+                    PostalCode = "60601",
+                    PhoneNumber = "555-789-1234"
+                },
+                new Company
+                {
+                    Id = 4,
+                    Name = "PQR Co.",
+                    StreetAddress = "101 Pine St",
+                    City = "Houston",
+                    State = "TX",
+                    PostalCode = "77001",
+                    PhoneNumber = "555-456-7890"
                 });
         }
     }

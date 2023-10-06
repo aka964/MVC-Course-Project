@@ -43,10 +43,12 @@ namespace stDataAccess.Repository
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = Dbset;
-            if(!string.IsNullOrEmpty(includeProperties))
+            if(filter != null)
+            query = query.Where(filter);
+            if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach(var property in includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries)) 
                 { 

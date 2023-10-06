@@ -13,11 +13,23 @@ namespace stDataAccess.Repository
         private readonly ApplicationDbContext _db;
         public ICategoryRepository Category { get; set; }
         public IProductRepository Product { get; set; }
+
+        public ICompanyRepository Company { get; set; }
+        public IShopingCartRepository ShopingCart { get; set; }
+        public IApplicationUserRepository applicationUser { get; set; }
+        public IOrderDetailRepository OrderDetail { get; set; }
+        public IOrderHeaderRepository OrderHeader { get; set; }
+
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Category = new CategoryRepository(_db);
             Product = new ProductRepository(_db);
+            Company = new CompanyRepository(_db);
+            ShopingCart = new ShopingCartRepository(_db);
+            applicationUser = new ApplicationUserRepository(_db);
+            OrderDetail = new OrderDetailRepository(_db);
+            OrderHeader = new OrderHeaderRepository(_db);
         }
 
 

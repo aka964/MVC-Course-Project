@@ -9,7 +9,7 @@ namespace stDataAccess.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll(string? includeProperties = null);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string? includeProperties = null);
         public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
         public void Add(T item);
         public void Remove(T item);
