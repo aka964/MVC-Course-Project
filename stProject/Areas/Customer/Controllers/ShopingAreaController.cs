@@ -158,7 +158,7 @@ namespace stZ.Areas.Customer.Controllers
             }
 			if (applicationUser.CompanyId.GetValueOrDefault() == 0)
 			{
-                var domain = "https://localhost:7219/";
+                var domain = Request.Scheme+ "://" + Request.Host.Value + "/";
                 var options = new SessionCreateOptions
                 {
                     SuccessUrl = domain+ $"customer/shopingArea/orderconfirmation/?id={shopingAreaVM.orderHeader.Id}",
